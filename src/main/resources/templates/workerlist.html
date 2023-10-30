@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<title>Worker List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div class="container">
+	<h1>Workers</h1>
+	</div>
+	<div class="col-md-4">
+		<i>Welcome <b sec:authentication="name"></b>, 
+        your role is <b sec:authentication="principal.authorities"></b>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+	<a href="/add" class="btn btn-primary">Add worker</a> 
+	</div>
+    <table class="table table-striped">
+		<tr>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Project</th>
+			<th>Date</th>
+			<th>Start</th>
+			<th>Total hours</th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+		</tr>
+		<!-- Use Thymeleaf to loop through the list of books and display them -->
+		<tr th:each="worker : ${workers}">
+			<td th:text="${worker.firstname}">Text ...</td>
+			<td th:text="${worker.lastname}">Text ...</td>
+			<td th:text="${worker.project.name}">Text ...</td>
+			<td th:text="${worker.date}">Text ...</td>
+			<td th:text="${worker.start}">Text ...</td>
+			<td th:text="${worker.total_hours}">Text ...</td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${worker.id})}" class="btn btn-xs btn-danger">Delete</a></td>
+			
+			
+
+		</tr>
+		</table>
+		
+				<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+		</form>
+</div>	
+</body>
+</html>
