@@ -1,6 +1,5 @@
 package com.example.Tyotunnit.web;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -13,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.Tyotunnit.domain.Project;
 import com.example.Tyotunnit.domain.ProjectRepository;
 import com.example.Tyotunnit.domain.Worker;
 import com.example.Tyotunnit.domain.WorkerRepository;
+
 
 @Controller
 public class WorkerController {
@@ -52,6 +53,11 @@ public class WorkerController {
 	   model.addAttribute("projects", crepository.findAll());
 	   return "addworker";
    }
+	@RequestMapping(value = "addproject")
+	public String addProject (Model model) {
+		model.addAttribute("project", new Project());
+		return "addproject";
+	}
    
    @RequestMapping(value="/save", method = RequestMethod.POST)
    public String save(Worker worker) {
@@ -59,10 +65,22 @@ public class WorkerController {
        return "redirect:workerlist";
    }
    
+	@RequestMapping(value = "saveproject", method = RequestMethod.POST)
+	public String saveProject (Project project) {
+		crepository.save(project);
+		return "redirect:workerlist";
+	}
+   
    @PreAuthorize("hasAuthority('ADMIN')")
    @RequestMapping(value="/delete/{Id}", method = RequestMethod.GET)
    public String deleteWorker(@PathVariable("Id")Long workerId, Model model) {
 	   repository.deleteById(workerId);
        return "redirect:../workerlist";
-}
+   }
+   @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String editBook(@PathVariable("id") Long workerId, Model model) {
+		model.addAttribute("worker", repository.findById(workerId));
+		model.addAttribute("projects", crepository.findAll());
+		return "editworker";
+   }
 }
