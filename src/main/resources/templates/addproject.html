@@ -3,6 +3,8 @@
 <head>
     <title>Add project</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    
 </head>
 <body>
 	<h1>Add project</h1>
@@ -10,7 +12,7 @@
 		<form th:object="${project}" th:action="@{saveproject}" action="#" method="post">
 		  	<label for="project">Project</label>
 			<input type="text" id="project" th:field="*{name}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
+			<div style="clear: both; display: block; height: 5px;"></div>
 				
 			
 			<input type="submit" value="Save"></input>

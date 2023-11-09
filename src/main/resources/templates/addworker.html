@@ -3,6 +3,8 @@
 <head>
     <title>Add Worker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    
 </head>
 <body>
 
@@ -11,31 +13,26 @@
     <form th:object="${worker}" th:action="@{/save}" action="#" method="post">
         <label for="firstname">First name:</label>
         <input type="text" id="firstname" th:field="*{firstname}" class="form-control"/><br/>
-		<div style="clear: both; display: block; height: 10px;"></div>
+		<div style="clear: both; display: block; height: 5px;"></div>
 		
         <label for="lastname">Last name:</label>
         <input type="text" id="lastname" th:field="*{lastname}" class="form-control"/><br/>
-		<div style="clear: both; display: block; height: 10px;"></div>
+		<div style="clear: both; display: block; height: 5px;"></div>
 		
 		<label for="project">Project</label>
 		<select id="project" th:field="*{project}" class="form-control">
 			<option th:each="project: ${projects}" th:value="${project.projectId}" th:text="${project.name}"></option>
 		</select> 
-		<div style="clear: both; display: block; height: 10px;"></div>
+		<div style="clear: both; display: block; height: 5px;"></div>
 		
 		<label for="date">Date:</label>
         <input type="text" id="date" th:field="*{date}" class="form-control"/><br/>
-		<div style="clear: both; display: block; height: 10px;"></div>
-		
-        <label for="start">Start:</label>
-        <input type="text" id="start" th:field="*{start}" class="form-control"/><br/>
-		<div style="clear: both; display: block; height: 10px;"></div>
+		<div style="clear: both; display: block; height: 5px;"></div>
 		
         <label for="total_hours">Total hours:</label>
         <input type="text" id="total_hours" th:field="*{total_hours}" step="0.01" class="form-control"/><br/>
-		<div style="clear: both; display: block; height: 10px;"></div>
-		
-		
+		<div style="clear: both; display: block; height: 5px;"></div>
+	
         <input type="submit" class="btn btn-primary" value=Save></input>
     </form>
     </div>

@@ -4,6 +4,8 @@
 <head>
 <title>Worker List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+
 </head>
 <body>
 
@@ -24,7 +26,6 @@
 			<th>Last name</th>
 			<th>Project</th>
 			<th>Date (yyyy-mm-dd)</th>
-			<th>Start</th>
 			<th>Total hours</th>
 			<th sec:authorize="hasAuthority('ADMIN')"></th>
 		</tr>
@@ -34,7 +35,6 @@
 			<td th:text="${worker.lastname}">Text ...</td>
 			<td th:text="${worker.project.name}">Text ...</td>
 			<td th:text="${worker.date}">Text ...</td>
-			<td th:text="${worker.start}">Text ...</td>
 			<td th:text="${worker.total_hours}">Text ...</td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a
 				th:href="@{/edit/{id}(id=${worker.id})}"
@@ -42,12 +42,12 @@
 			<td sec:authorize="hasAuthority('ADMIN')"><a
 				th:href="@{/delete/{id}(id=${worker.id})}"
 				class="btn btn-xs btn-danger">Delete</a></td>
-
 		</tr>
 	</table>
 
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+		
 	</form>
 	</div>
 </body>

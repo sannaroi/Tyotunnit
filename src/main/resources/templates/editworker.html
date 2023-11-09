@@ -3,12 +3,19 @@
 <head>
     <title>Edit Worker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    
 </head>
 <body>
 
     <h2>Edit Worker</h2>
   	<div class="container">
-    <form th:object="${worker}" th:action="@{/save}" action="#" method="post">
+  	
+    <form th:object="${worker}" th:action="@{../save}" action="#" method="post">
+    
+    	 <label for="id"></label>
+         <input type="hidden" id="id" th:field="*{id}" readonly="readonly">
+    
         <label for="firstname">First name:</label>
         <input type="text" id="firstname" th:field="*{firstname}" class="form-control"/><br/>
 		<div style="clear: both; display: block; height: 10px;"></div>
@@ -25,10 +32,6 @@
 		
 		<label for="date">Date:</label>
         <input type="text" id="date" th:field="*{date}" class="form-control"/><br/>
-		<div style="clear: both; display: block; height: 10px;"></div>
-		
-        <label for="start">Start:</label>
-        <input type="text" id="start" th:field="*{start}" class="form-control"/><br/>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		
         <label for="total_hours">Total hours:</label>
